@@ -70,22 +70,40 @@ Done
 
 ## Installation
 
+### Option 1: Conda (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/maxx1031/Face_generation_db.git
+cd Face_generation_db
+
+# Create conda environment
+conda env create -f environment.yml
+
+# Activate environment
+conda activate emotion_dataset
+```
+
+### Option 2: Pip
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### Requirements
 
-- Python 3.8+
+- Python 3.10+
+- FFmpeg
 - yt-dlp
 - OpenCV
 - InsightFace
 - scikit-learn
-- pandas
-- numpy
+- pandas / numpy
 - tqdm
 - FER (Facial Expression Recognition)
 - ONNX Runtime
+- PyTorch / TorchVision
+- DeepFace / FaceNet-PyTorch
 
 ## Usage
 
