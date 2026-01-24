@@ -132,6 +132,19 @@ The pipeline supports the following emotion labels:
 - Surprise
 - Disgust
 
+## Citation
+
+If you use this pipeline with CelebV-HQ dataset, please cite:
+
+```bibtex
+@inproceedings{zhu2022celebvhq,
+  title={{CelebV-HQ}: A Large-Scale Video Facial Attributes Dataset},
+  author={Zhu, Hao and Wu, Wayne and Zhu, Wentao and Jiang, Liming and Tang, Siwei and Zhang, Li and Liu, Ziwei and Loy, Chen Change},
+  booktitle={ECCV},
+  year={2022}
+}
+```
+
 ## License
 
 MIT
