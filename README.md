@@ -11,6 +11,56 @@ A Python pipeline for generating high-quality face datasets from videos. Designe
 - **Top Quality Selection**: Selects top 10 high-quality + 5 temporal sequence frames per person
 - **Size Control**: Configurable dataset size limit (default: 1GB)
 
+## Configuration Parameters
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| **Frontality (yaw)** | \|yaw\| < 30° | Maximum left-right head rotation |
+| **Frontality (pitch)** | \|pitch\| < 25° | Maximum up-down head rotation |
+| **Sharpness** | Laplacian > 100 | Minimum sharpness threshold |
+| **Detection Confidence** | > 0.6 | Minimum face detection confidence |
+| **Resolution** | >= 720p | Minimum video resolution (pre-download check) |
+| **Frame Sampling** | 90 frames | 30 front + 30 middle + 30 end per video |
+| **Target Data Size** | 1GB | Pipeline stops when reaching this limit |
+| **Per-Person Selection** | Top 10 + 5 temporal | High quality anchors + temporal sequence |
+
+## Processing Flow
+
+```
+Video URL
+    │
+    ▼
+[Resolution Check] ─── < 720p ──→ Skip
+    │
+    │ >= 720p
+    ▼
+[Download Video]
+    │
+    ▼
+[Fixed Sampling: 90 frames] ─── front 30 / middle 30 / end 30
+    │
+    ▼
+[Face Detection + Quality Scoring]
+    │
+    ▼
+[Filter] ─── blurry / side-face / low-confidence ──→ Discard
+    │
+    ▼
+[Save Candidate Frames + Embeddings]
+    │
+    ▼
+[Monitor Data Size] ─── >= 1GB ──→ Stop
+    │
+    ▼
+[Identity Clustering]
+    │
+    ▼
+[Per-Person Selection] ─── Top 10 HQ + 5 Temporal
+    │
+    ▼
+Done
+```
+
 ## Pipeline Steps
 
 1. **Download Videos** - Fetches videos from YouTube with resolution check
